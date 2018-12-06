@@ -1,3 +1,3 @@
 Accuracy list:
 
-raw SVM:  0.5985
+raw_SVM:  0.5985
