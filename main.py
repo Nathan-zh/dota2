@@ -20,5 +20,6 @@ classifier.fit(array_train[:, 4:], array_train[:, 0])
 y_pre = classifier.predict(array_test[:, 4:])
 
 acc = score(array_test[:, 0], y_pre)
+print(acc)
 
 
