@@ -26,8 +26,8 @@ autoencoder = Model(inputs=input_img, outputs=decoded3)
 autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 
 autoencoder.fit(x_train, x_train,
-                epochs=500,
-                batch_size=256,
+                epochs=300,
+                batch_size=1028,
                 shuffle=False,
                 validation_split=0.1)
 
