@@ -22,9 +22,9 @@ embedding = Model(inputs=input_img, outputs=x)
 embedding.compile(optimizer='adadelta', loss='binary_crossentropy')
 
 embedding.fit(array_train[:, 4:], array_train[:, 0],
-                epochs=500,
+                epochs=50,
                 batch_size=1024,
-                shuffle=False,
+                shuffle=True,
                 validation_split=0.1)
 
 y_pre = embedding.predict(array_test[:, 4:])
