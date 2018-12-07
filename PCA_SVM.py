@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn import svm
 from sklearn.metrics import accuracy_score as score
+from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
 TRAIN_DATA_FILE = 'dota2Train.csv'
@@ -14,9 +15,12 @@ test = pd.read_csv(TEST_DATA_FILE, header=None)
 array_train = train.values
 array_test = test.values
 
+train_x = StandardScaler().fit_transform(array_train[:, 4:])
+test_x = StandardScaler().fit_transform(array_test[:, 4:])
+
 pca = PCA(n_components=50)
-train_z = pca.fit_transform(array_train[:, 4:])
-test_z = pca.fit_transform(array_test[:, 4:])
+train_z = pca.fit_transform(train_x)
+test_z = pca.fit_transform(test_x)
 
 classifier = svm.SVC()
 classifier.fit(train_z, array_train[:, 0])
