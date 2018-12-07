@@ -1,7 +1,7 @@
 import pandas as pd
 #from sklearn import svm
 from sklearn.metrics import accuracy_score as score
-#import numpy as np
+import numpy as np
 from keras.models import Model
 from keras.layers import Dense, Input
 
@@ -25,8 +25,10 @@ embedding.fit(array_train[:, 4:], array_train[:, 0],
                 epochs=500,
                 batch_size=1024,
                 shuffle=False,
-                validation_split=0.1)
+                validation_split=0.1,
+                callbacks=['val_acc'])
 
 y_pre = embedding.predict(array_test[:, 4:])
-acc = score(array_test[:, 0], y_pre)
+print(y_pre[:10])
+acc = score(array_test[:, 0], np.round(y_pre))
 print(acc)
