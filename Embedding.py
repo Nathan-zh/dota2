@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.metrics import accuracy_score as score
 import numpy as np
 from keras.models import Model
-from keras.layers import Dense, Input
+from keras.layers import Dense, Input, Dropout
 
 TRAIN_DATA_FILE = 'dota2Train.csv'
 TEST_DATA_FILE = 'dota2Test.csv'
@@ -14,8 +14,11 @@ array_test = test.values
 
 input_img = Input(shape=(113,))
 x = Dense(64, activation='sigmoid')(input_img)
+x = Dropout(0.1)(x)
 x = Dense(32, activation='sigmoid')(x)
+x = Dropout(0.1)(x)
 x = Dense(16, activation='sigmoid')(x)
+x = Dropout(0.1)(x)
 x = Dense(1, activation='tanh')(x)
 
 embedding = Model(inputs=input_img, outputs=x)
