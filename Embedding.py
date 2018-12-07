@@ -16,9 +16,10 @@ input_img = Input(shape=(113,))
 x = Dense(64, activation='sigmoid')(input_img)
 x = Dropout(0.1)(x)
 x = Dense(32, activation='sigmoid')(x)
-x = Dropout(0.1)(x)
+x = Dropout(0.05)(x)
 x = Dense(16, activation='sigmoid')(x)
-x = Dropout(0.1)(x)
+x = Dense(8, activation='sigmoid')(x)
+x = Dropout(0.05)(x)
 x = Dense(1, activation='tanh')(x)
 
 embedding = Model(inputs=input_img, outputs=x)
@@ -26,7 +27,7 @@ embedding.compile(optimizer='adadelta', loss='binary_crossentropy')
 
 embedding.fit(array_train[:, 4:], array_train[:, 0],
                 epochs=50,
-                batch_size=1024,
+                batch_size=128,
                 shuffle=True,
                 validation_split=0.1)
 
