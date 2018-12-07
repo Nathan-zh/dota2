@@ -15,7 +15,7 @@ array_test = test.values
 input_img = Input(shape=(113,))
 x = Dense(64, activation='sigmoid')(input_img)
 x = Dense(32, activation='sigmoid')(x)
-x = Dense(32, activation='sigmoid')(x)
+x = Dense(16, activation='sigmoid')(x)
 x = Dense(1, activation='tanh')(x)
 
 embedding = Model(inputs=input_img, outputs=x)
@@ -29,5 +29,5 @@ embedding.fit(array_train[:, 4:], array_train[:, 0],
 
 y_pre = embedding.predict(array_test[:, 4:])
 print(y_pre[:10])
-acc = score(array_test[:, 0], np.round(y_pre))
+acc = score(array_test[:, 0], np.sign(y_pre))
 print(acc)
