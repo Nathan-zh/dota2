@@ -32,10 +32,11 @@ autoencoder.fit(x_train, x_train,
                 validation_split=0.1)
 
 enconder = Model(inputs=input_img, outputs=encoded3)
-representation = enconder.predict(x_train)
+x_train_rep = enconder.predict(x_train)
+print(x_train_rep[:10, :])
 
 classifier = svm.SVC()
-classifier.fit(representation, array_train[:, 0])
+classifier.fit(x_train_rep, array_train[:, 0])
 
 x_test_rep = enconder.predict(array_test[:, 4:])
 y_pre = classifier.predict(x_test_rep)
