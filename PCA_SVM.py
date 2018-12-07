@@ -14,7 +14,7 @@ test = pd.read_csv(TEST_DATA_FILE, header=None)
 array_train = train.values
 array_test = test.values
 
-pca = PCA(n_components=25)
+pca = PCA(n_components=50)
 train_z = pca.fit_transform(array_train[:, 4:])
 test_z = pca.fit_transform(array_test[:, 4:])
 
