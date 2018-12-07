@@ -25,8 +25,7 @@ embedding.fit(array_train[:, 4:], array_train[:, 0],
                 epochs=500,
                 batch_size=1024,
                 shuffle=False,
-                validation_split=0.1,
-                callbacks=['val_acc'])
+                validation_split=0.1)
 
 y_pre = embedding.predict(array_test[:, 4:])
 print(y_pre[:10])
