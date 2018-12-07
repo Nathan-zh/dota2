@@ -16,22 +16,22 @@ x_train = array_train[:, 4:]
 input_img = Input(shape=(113,))
 encoded1 = Dense(64, activation='relu')(input_img)
 encoded2 = Dense(32, activation='relu')(encoded1)
-encoded3 = Dense(16, activation='relu')(encoded2)
+#encoded3 = Dense(16, activation='relu')(encoded2)
 
-decoded1 = Dense(16, activation='relu')(encoded3)
-decoded2 = Dense(32, activation='relu')(decoded1)
+#decoded1 = Dense(16, activation='relu')(encoded3)
+decoded2 = Dense(32, activation='relu')(encoded2)
 decoded3 = Dense(113, activation='sigmoid')(decoded2)
 
 autoencoder = Model(inputs=input_img, outputs=decoded3)
 autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 
 autoencoder.fit(x_train, x_train,
-                epochs=300,
-                batch_size=1028,
+                epochs=500,
+                batch_size=1024,
                 shuffle=False,
                 validation_split=0.1)
 
-enconder = Model(inputs=input_img, outputs=encoded3)
+enconder = Model(inputs=input_img, outputs=encoded2)
 x_train_rep = enconder.predict(x_train)
 print(x_train_rep[:10, :])
 
