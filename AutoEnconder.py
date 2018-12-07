@@ -39,6 +39,7 @@ classifier.fit(representation, array_train[:, 0])
 
 x_test_rep = enconder.predict(array_test[:, 4:])
 y_pre = classifier.predict(x_test_rep)
+print(y_pre[:10])
 
 acc = score(array_test[:, 0], y_pre)
 print(acc)
