@@ -3,7 +3,7 @@ from sklearn import svm
 from sklearn.metrics import accuracy_score as score
 #import numpy as np
 from keras.models import Model
-from keras.layers import Dense, Input
+from keras.layers import Dense, Input, Dropout
 
 TRAIN_DATA_FILE = 'dota2Train.csv'
 TEST_DATA_FILE = 'dota2Test.csv'
@@ -15,9 +15,11 @@ x_train = array_train[:, 4:]
 
 input_img = Input(shape=(113,))
 encoded1 = Dense(64, activation='tanh')(input_img)
+encoded1 = Dropout(0.1)(encoded1)
 encoded2 = Dense(32, activation='tanh')(encoded1)
 
 decoded2 = Dense(32, activation='tanh')(encoded2)
+decoded2 = Dropout(0.1)(decoded2)
 decoded3 = Dense(113, activation='tanh')(decoded2)
 
 autoencoder = Model(inputs=input_img, outputs=decoded3)
