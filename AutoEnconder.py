@@ -15,18 +15,18 @@ x_train = array_train[:, 4:]
 
 input_img = Input(shape=(113,))
 encoded1 = Dense(64, activation='tanh')(input_img)
-encoded1 = Dropout(0.1)(encoded1)
+#encoded1 = Dropout(0.1)(encoded1)
 encoded2 = Dense(32, activation='tanh')(encoded1)
 
 decoded2 = Dense(32, activation='tanh')(encoded2)
-decoded2 = Dropout(0.1)(decoded2)
+#decoded2 = Dropout(0.1)(decoded2)
 decoded3 = Dense(113, activation='tanh')(decoded2)
 
 autoencoder = Model(inputs=input_img, outputs=decoded3)
 autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 
 autoencoder.fit(x_train, x_train,
-                epochs=100,
+                epochs=500,
                 batch_size=256,
                 shuffle=True,
                 validation_split=0.1)
