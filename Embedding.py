@@ -13,13 +13,13 @@ array_train = train.values
 array_test = test.values
 
 input_img = Input(shape=(113,))
-x = Dense(64, activation='sigmoid')(input_img)
+x = Dense(64, activation='tanh')(input_img)
 x = Dropout(0.1)(x)
-x = Dense(32, activation='sigmoid')(x)
-x = Dropout(0.05)(x)
-x = Dense(16, activation='sigmoid')(x)
-x = Dense(8, activation='sigmoid')(x)
-x = Dropout(0.05)(x)
+x = Dense(32, activation='tanh')(x)
+x = Dropout(0.1)(x)
+x = Dense(16, activation='tanh')(x)
+x = Dense(8, activation='tanh')(x)
+x = Dropout(0.1)(x)
 x = Dense(1, activation='tanh')(x)
 
 embedding = Model(inputs=input_img, outputs=x)
