@@ -1,4 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn import svm
 import pandas as pd
 from sklearn.metrics import accuracy_score as score
 
@@ -19,7 +20,7 @@ y_pre1 = classifier1.predict(array_test[:, 4:])
 acc1 = score(array_test[:, 0], y_pre1)
 print(acc1)
 
-classifier2 = AdaBoostClassifier()
+classifier2 = AdaBoostClassifier(base_estimator=svm.SVC(), n_estimators=5)
 classifier2.fit(array_train[:, 4:], array_train[:, 0])
 y_pre2 = classifier2.predict(array_test[:, 4:])
 acc2 = score(array_test[:, 0], y_pre2)
