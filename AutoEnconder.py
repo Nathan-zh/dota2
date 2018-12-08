@@ -14,21 +14,19 @@ array_test = test.values
 x_train = array_train[:, 4:]
 
 input_img = Input(shape=(113,))
-encoded1 = Dense(64, activation='relu')(input_img)
-encoded2 = Dense(32, activation='relu')(encoded1)
-#encoded3 = Dense(16, activation='relu')(encoded2)
+encoded1 = Dense(64, activation='tanh')(input_img)
+encoded2 = Dense(32, activation='tanh')(encoded1)
 
-#decoded1 = Dense(16, activation='relu')(encoded3)
-decoded2 = Dense(32, activation='relu')(encoded2)
-decoded3 = Dense(113, activation='sigmoid')(decoded2)
+decoded2 = Dense(32, activation='tanh')(encoded2)
+decoded3 = Dense(113, activation='tanh')(decoded2)
 
 autoencoder = Model(inputs=input_img, outputs=decoded3)
 autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 
 autoencoder.fit(x_train, x_train,
-                epochs=500,
-                batch_size=1024,
-                shuffle=False,
+                epochs=100,
+                batch_size=256,
+                shuffle=True,
                 validation_split=0.1)
 
 enconder = Model(inputs=input_img, outputs=encoded2)
@@ -40,7 +38,6 @@ classifier.fit(x_train_rep, array_train[:, 0])
 
 x_test_rep = enconder.predict(array_test[:, 4:])
 y_pre = classifier.predict(x_test_rep)
-print(y_pre[:10])
 
 acc = score(array_test[:, 0], y_pre)
 print(acc)
