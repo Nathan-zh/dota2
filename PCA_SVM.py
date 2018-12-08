@@ -15,12 +15,12 @@ test = pd.read_csv(TEST_DATA_FILE, header=None)
 array_train = train.values
 array_test = test.values
 
-train_x = StandardScaler().fit_transform(array_train[:, 4:])
-test_x = StandardScaler().fit_transform(array_test[:, 4:])
+train_x = array_train[:, 4:]
+test_x = array_test[:, 4:]
 
 pca = PCA(n_components=50)
 train_z = pca.fit_transform(train_x)
-test_z = pca.fit_transform(test_x)
+test_z = pca.transform(test_x)
 
 classifier = svm.SVC()
 classifier.fit(train_z, array_train[:, 0])
