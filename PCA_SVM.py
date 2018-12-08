@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn import svm
 from sklearn.metrics import accuracy_score as score
-from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
 TRAIN_DATA_FILE = 'dota2Train.csv'
@@ -18,7 +17,7 @@ array_test = test.values
 train_x = array_train[:, 4:]
 test_x = array_test[:, 4:]
 
-pca = PCA(n_components=50)
+pca = PCA(n_components=64)
 train_z = pca.fit_transform(train_x)
 test_z = pca.transform(test_x)
 
