@@ -15,7 +15,7 @@ test = pd.read_csv(TEST_DATA_FILE, header=None)
 array_train = train.values
 array_test = test.values
 
-classifier = svm.SVC()
+classifier = svm.SVC(gamma=2, C=1)
 classifier.fit(array_train[:, 4:], array_train[:, 0])
 y_pre = classifier.predict(array_test[:, 4:])
 
