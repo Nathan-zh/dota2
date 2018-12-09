@@ -1,5 +1,8 @@
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
-from sklearn import svm
+from sklearn.svm import SVC
+from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
 import pandas as pd
 from sklearn.metrics import accuracy_score as score
 
@@ -14,14 +17,15 @@ test = pd.read_csv(TEST_DATA_FILE, header=None)
 array_train = train.values
 array_test = test.values
 
-classifier1 = RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1)
-classifier1.fit(array_train[:, 4:], array_train[:, 0])
-y_pre1 = classifier1.predict(array_test[:, 4:])
-acc1 = score(array_test[:, 0], y_pre1)
-print(acc1)
+classifiers = [
+    KNeighborsClassifier(3),
+    SVC(),
+    DecisionTreeClassifier(max_depth=5),
+    MLPClassifier(alpha=0.55),
+    GaussianNB()]
 
-classifier2 = AdaBoostClassifier(base_estimator=svm.SVC(), n_estimators=5, algorithm='SAMME')
-classifier2.fit(array_train[:, 4:], array_train[:, 0])
-y_pre2 = classifier2.predict(array_test[:, 4:])
-acc2 = score(array_test[:, 0], y_pre2)
-print(acc2)
+for classifier in classifiers:
+    classifier.fit(array_train[:, 4:], array_train[:, 0])
+    y_pre = classifier.predict(array_test[:, 4:])
+    acc = score(array_test[:, 0], y_pre)
+    print(acc)
