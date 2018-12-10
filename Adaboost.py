@@ -45,7 +45,7 @@ losses = []
 
 for i in range(len(names)):
     aa = y_pres[i] - array_train[:, 0]
-    loss = np.dot(weights, np.dot(aa, aa))
+    loss = np.dot(weights, np.multiply(aa, aa))
     losses.append(loss)
 
 min_index = np.argmin(losses)
@@ -55,10 +55,10 @@ w = []
 index = []
 for iters in range(iteration):
     if (iters+1) % 100 == 0:
-        print('****************Iteration = ', iters+1,'****************')
+        print('****************Iteration = ', iters+1, '****************')
     epsilon = np.dot(weights, np.abs(y_pres[min_index] - array_train[:, 0]) / 2)
     w.append(0.5 * np.log(1 / epsilon - 1))
-    temp = np.multiply(weights, np.exp(-w * np.multiply(y_pres[min_index], array_train[:, 0])))
+    temp = np.multiply(weights, np.exp(-w[-1] * np.multiply(y_pres[min_index], array_train[:, 0])))
     weights = temp / np.sum(temp)
     losses = []
 
