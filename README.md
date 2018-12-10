@@ -1,36 +1,31 @@
-The accuracy of model Nearest Neighbors is 0.5263
+The accuracy of model Decision Tree is 0.5633 / 0.5337
 
-The accuracy of model SVM is 0.5985
+The accuracy of model Nearest Neighbors is 0.7773 / 0.5185
 
-The accuracy of model Decision Tree is 0.5434
+The accuracy of model SVM is 0.6383 / 0.5676
 
-The accuracy of model Neural Net is 0.5972
+The accuracy of model Neural Net is 0.9863 / 0.5443
 
-The accuracy of model Naive Bayes is 0.5640
+The accuracy of model Naive Bayes is 0.5890 / 0.5043
 
 ****************Adaboost start off!****************
 
 ****************Update precedure****************
 
-****************Iteration =  100 ****************
+Iteration =  1   Index =  3   w = 2.4395
 
-****************Iteration =  200 ****************
+Iteration =  2   Index =  1   w = 0.5849
 
-****************Iteration =  300 ****************
+Iteration =  3   Index =  0   w = 0.3791
 
-****************Iteration =  400 ****************
+Iteration =  4   Index =  4   w = 0.2006
 
-****************Iteration =  500 ****************
+Iteration =  5   Index =  0   w = 0.0719
 
-****************Iteration =  600 ****************
+Iteration =  6   Index =  1   w = 0.0644
 
-****************Iteration =  700 ****************
+Iteration =  7   Index =  4   w = 0.0256
 
-****************Iteration =  800 ****************
+Iteration =  8   Index =  0   w = 0.0205
 
-****************Iteration =  900 ****************
-
-****************Iteration =  1000 ****************
-
-The accuracy of ensemble model is 0.5263
-
+****************The accuracy of ensemble model is 0.5443****************
