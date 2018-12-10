@@ -20,12 +20,12 @@ array_train = train.values
 array_test = test.values
 
 # Single models
-names = ['Decision Tree', 'Neural Net', 'Naive Bayes'] # 'Nearest Neighbors', 'SVM',
-classifiers = [DecisionTreeClassifier(max_depth=5),
-               MLPClassifier(alpha=0.55), GaussianNB()] #KNeighborsClassifier(3), SVC(),
+names = ['Nearest Neighbors', 'SVM', 'Decision Tree', 'Neural Net', 'Naive Bayes']
+classifiers = [DecisionTreeClassifier(max_depth=5), KNeighborsClassifier(3), SVC(),
+               MLPClassifier(alpha=0.55), GaussianNB()]
 clfs = [] # bad learners
 y_pres = [] # collection of train predictions
-y_test_pres = [] #collection of test predictions
+y_test_pres = [] # collection of test predictions
 
 for name, classifier in zip(names, classifiers):
     classifier.fit(array_train[:, 4:], array_train[:, 0])
@@ -64,7 +64,7 @@ for iters in range(iteration):
 
     for i in range(len(names)):
         aa = y_pres[i] - array_train[:, 0]
-        loss = np.dot(weights, np.dot(aa, aa))
+        loss = np.dot(weights, np.multiply(aa, aa))
         losses.append(loss)
 
     index.append(np.argmin(losses))
