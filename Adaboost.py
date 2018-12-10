@@ -21,7 +21,7 @@ array_test = test.values
 
 # Single models
 names = ['Nearest Neighbors', 'SVM', 'Decision Tree', 'Neural Net', 'Naive Bayes']
-classifiers = [DecisionTreeClassifier(max_depth=5), KNeighborsClassifier(3), SVC(),
+classifiers = [KNeighborsClassifier(3), SVC(), DecisionTreeClassifier(max_depth=5),
                MLPClassifier(alpha=0.55), GaussianNB()]
 clfs = [] # bad learners
 y_pres = [] # collection of train predictions
@@ -52,13 +52,13 @@ min_index = np.argmin(losses)
 print('****************Update precedure****************')
 iteration = 1000
 w = []
-index = []
+index = [min_index]
 for iters in range(iteration):
     if (iters+1) % 100 == 0:
         print('****************Iteration = ', iters+1, '****************')
-    epsilon = np.dot(weights, np.abs(y_pres[min_index] - array_train[:, 0]) / 2)
+    epsilon = np.dot(weights, np.abs(y_pres[index[-1]] - array_train[:, 0]) / 2)
     w.append(0.5 * np.log(1 / epsilon - 1))
-    temp = np.multiply(weights, np.exp(-w[-1] * np.multiply(y_pres[min_index], array_train[:, 0])))
+    temp = np.multiply(weights, np.exp(-w[-1] * np.multiply(y_pres[index[-1]], array_train[:, 0])))
     weights = temp / np.sum(temp)
     losses = []
 
