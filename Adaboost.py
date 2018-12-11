@@ -16,7 +16,7 @@ test = pd.read_csv(TEST_DATA_FILE, header=None)
 
 # y = array_train[:,0], x = array_train[:, 4:]
 # size: y: n*1, x: n*113
-array_train = train.values[:3000, :]
+array_train = train.values
 array_test = test.values
 
 # Single models
